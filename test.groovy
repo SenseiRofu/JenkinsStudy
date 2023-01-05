@@ -1,17 +1,17 @@
+// Create the job
+def job = new Job("MyJob", "jenkins")
+
 // Set up variables for the build
-def branch = env.BRANCH_NAME
+def branch = env.main
 def buildNumber = env.BUILD_NUMBER
 
-// Print a message to the console
-println "Building branch ${branch} with build number ${buildNumber}"
-
-// Check out code from the repository
-checkout scm
-
-// Run the build script
-sh './build.sh'
+// Add build steps to the job
+job.addBuildStep(new Shell("echo 'Building branch ${main} with build number ${buildNumber}'"))
+job.addBuildStep(new Checkout("git", "https://github.com/SenseiRofu/JenkinsStudy.git"))
+job.addBuildStep(new Shell("./build.sh"))
 
 // If the build is successful, upload the artifacts to a specified location
-if (currentBuild.result == 'SUCCESS') {
-  uploadArtifacts 'build/*.zip'
-}
+job.addPostBuildStep(new ArtifactoryPublisher("build/*.zip", "releases", "https://artifactory.example.com/artifactory"))
+
+// Save the job
+job.save()
