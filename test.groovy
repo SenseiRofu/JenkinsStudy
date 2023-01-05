@@ -6,7 +6,7 @@ def branch = env.main
 def buildNumber = env.BUILD_NUMBER
 
 // Add build steps to the job
-job.addBuildStep(new Shell("echo 'Building branch ${main} with build number ${buildNumber}'"))
+job.addBuildStep(new Shell("echo 'Building branch with build number ${buildNumber}'"))
 job.addBuildStep(new Checkout("git", "https://github.com/SenseiRofu/JenkinsStudy.git"))
 job.addBuildStep(new Shell("./build.sh"))
 
