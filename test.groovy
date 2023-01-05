@@ -14,6 +14,10 @@ job('First-Maven-Project-Via-DSL') {
             mavenInstallation('maven-3.8.6')
             
         }
+    steps {
+            echo 'ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ-1'
+
+        }
     }
     publishers {
         //archive the war file generated
