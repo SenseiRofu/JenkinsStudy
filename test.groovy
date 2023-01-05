@@ -12,9 +12,13 @@ job('First-Maven-Project-Via-DSL') {
             goals('build package')
             rootPOM('pom.xml')
             mavenInstallation('maven-3.8.6')
-            shell('echo START')
-            gradle('check')
+    post {
+        success {
+            echo "Now Archiving the Artifacts....."
+            archiveArtifacts artifacts: '**/*.jar'
+              }
         }
+      
         
     }
     publishers {
