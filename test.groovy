@@ -12,13 +12,10 @@ job('First-Maven-Project-Via-DSL') {
             goals('build package')
             rootPOM('pom.xml')
             mavenInstallation('maven-3.8.6')
-            
+            shell('echo START')
+            gradle('check')
         }
-    steps {
-        Linux{
-            echo 'ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ-1'
-
-        }
+        
     }
     publishers {
         //archive the war file generated
