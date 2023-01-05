@@ -15,6 +15,7 @@ job('First-Maven-Project-Via-DSL') {
             
         }
     steps {
+        Linux{
             echo 'ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ-1'
 
         }
